@@ -1,16 +1,18 @@
 data_structure = [
-[1, 2, 3],
-{'a': 4, 'b': 5},
-(6, {'cube': 7, 'drum': 8}),
-"Hello",
-((), [{(2, 'Urban', ('Urban2', 35))}])
+    [1, 2, 3],
+    {'a': 4, 'b': 5},
+    (6, {'cube': 7, 'drum': 8}),
+    "Hello",
+    ((), [{(2, 'Urban', ('Urban2', 35))}])
 ]
+
+
 # summ = 0
 def calculate_structure_sum(data_structure):
     # global summ
     total_sum = 0
     for i in range(0, len(data_structure)):
-    # for i in len(data_structure):
+        # for i in len(data_structure):
         if isinstance(data_structure[i], (list, tuple, set)):  # list):  # списком, кортежем или множеством
             if isinstance(data_structure[i], set):
                 total_sum += calculate_structure_sum(list(data_structure[i]))
@@ -18,12 +20,15 @@ def calculate_structure_sum(data_structure):
                 total_sum += calculate_structure_sum(data_structure[i])
         elif isinstance(data_structure[i], dict):  # dict): #Словарь
             total_sum += calculate_structure_sum([*(data_structure[i]).values()])
-            total_sum += calculate_structure_sum([*(data_structure[i]).keys()]) # на результат рекурсивного вызова функции с элементами словаря (arg.items()).
+            total_sum += calculate_structure_sum([*(
+            data_structure[i]).keys()])  # на результат рекурсивного вызова функции с элементами словаря (arg.items()).
         elif isinstance(data_structure[i], str):
             total_sum += len(data_structure[i])
         elif isinstance(data_structure[i], (int, float)):
             total_sum += data_structure[i]
     return total_sum
+
+
 result = calculate_structure_sum(data_structure)
 print(result)
 
